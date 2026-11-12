@@ -42,8 +42,13 @@ def extract_p300_windows(df, event_column='FeedBackEvent', signal_columns=None, 
 final_segments =[]
 final_feedback_times = []
 
-# Load all the CSV files
-folder_path = r"C:\Users\abhin\OneDrive\Pictures\JAVASCRIPT\BCI_Challenge\train"
+# Load all the CSV files from the folder given on the command line:
+#   python model.py path/to/train
+import sys
+
+if len(sys.argv) != 2:
+    sys.exit("usage: python model.py <folder with the training CSVs>")
+folder_path = sys.argv[1]
 
 # List all CSV files in the folder
 csv_files = [f for f in os.listdir(folder_path) if f.endswith('.csv')]
